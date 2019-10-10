@@ -7,8 +7,8 @@ import { User } from '../../../model/entity/manage/auth/user';
 })
 export class UserService extends AbstractService<User> {
 
-  constructor(protected injector: Injector){
-    super(injector, "/manage/auth/user");
+  constructor(protected injector: Injector) {
+    super(injector, '/manage/auth/user');
 
 /*
   newInstance():User {

@@ -11,7 +11,7 @@ import AppConfig from 'src/app-config';
 })
 export class LoginService {
   protected url = AppConfig.url;
-  private systemLangCode = "tr";
+  private systemLangCode = 'tr';
 
   constructor(private http: HttpClient, private router: Router, private cacheService: CacheService) { }
 
@@ -20,7 +20,7 @@ export class LoginService {
       let params = new HttpParams();
       params = params.append('username', formValue.username);
       params = params.append('password', formValue.password);
-      this.http.get<LoginResponseModel>(this.url + "/public/login", { params: params, withCredentials: true })
+      this.http.get<LoginResponseModel>(this.url + '/public/login', { params, withCredentials: true })
         .subscribe(
           resp => {
 
@@ -35,27 +35,27 @@ export class LoginService {
   }
 
   async createSession(loginResponseModel: LoginResponseModel, rememberMe: boolean) {
- if (rememberMe) {
+    if (rememberMe) {
       this.cacheService.setLocal(Storage.SESSION_TYPE, Storage.LOCALE_STORAGE);
       this.cacheService.storage_type = Storage.LOCALE_STORAGE;
       localStorage.setItem(Storage.TOKEN, JSON.stringify(loginResponseModel.token));
       localStorage.setItem(Storage.USER, JSON.stringify(loginResponseModel.user));
- } else {
+      localStorage.setItem(Storage.SESSION_TYPE, JSON.stringify(Storage.LOCALE_STORAGE));
+    } else {
+      this.cacheService.setLocal(Storage.SESSION_TYPE, Storage.SESSION_STORAGE);
       this.cacheService.storage_type = Storage.SESSION_STORAGE;
       sessionStorage.setItem(Storage.TOKEN, JSON.stringify(loginResponseModel.token));
       sessionStorage.setItem(Storage.USER, JSON.stringify(loginResponseModel.user));
-      sessionStorage.setItem(Storage.SESSION_TYPE, JSON.stringify(Storage.SESSION_STORAGE));
-    }
-    console.log("Response Model:",loginResponseModel);
+     }
+    window.document.title += ' - ' + loginResponseModel.user.firstName;
     this.router.navigate(['/app']);
   }
-
   isLoggedIn(): boolean {
     return (localStorage.getItem(Storage.USER) != null || sessionStorage.getItem(Storage.USER) != null);
   }
 
   async logOut() {
-    await this.http.get<any>(this.url + "/public/login/" + this.cacheService.get(Storage.TOKEN)).toPromise().then(resp => {
+    await this.http.get<any>(this.url + '/public/login/' + this.cacheService.get(Storage.TOKEN)).toPromise().then(resp => {
       localStorage.clear();
       sessionStorage.clear();
       window.location.reload(true);

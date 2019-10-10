@@ -1,0 +1,23 @@
+
+<p-virtualScroller [value]="todolists" scrollHeight="500px" [itemSize]="150">
+  <p-header>Header Content</p-header>
+  <p-footer>Footer Content</p-footer>
+  <ng-template let-i pTemplate="item" let-i="index">
+
+    <div class="ui-g car-item">
+      <div class="ui-g-12 ui-md-2">
+          <div style="font-size: 24px; text-align: center; padding-top: 48px">{{i}}</div>
+      </div>
+      <div class="ui-g-12 ui-md-8">
+          <div class="ui-g">
+              <div class="ui-g-2 ui-sm-6">Name: </div>
+              <div class="ui-g-10 ui-sm-6">{{i?.name}}</div>
+
+              <div class="ui-g-2 ui-sm-6">Detail: </div>
+              <div class="ui-g-10 ui-sm-6">{{i?.detail}}</div>
+
+          </div>
+      </div>
+  </div>
+  </ng-template>
+</p-virtualScroller>

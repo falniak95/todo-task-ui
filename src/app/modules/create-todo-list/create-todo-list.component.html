@@ -1,2 +1,5 @@
-<<p>create-todo-list works!</p>
->
+<form name="form" #form="ngForm" (ngSubmit)="createToDoList(form.value)"  >
+  <input [(ngModel)]="name" name="name" type="text" required />
+  <input [(ngModel)]="detail" name="detail" type="text" required/>
+  <input type="submit" text="Test" [disabled]="form.invalid"/>
+</form>

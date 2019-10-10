@@ -2,11 +2,11 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpParams
-} from "@angular/common/http";
-import { Type, Injector } from "@angular/core";
-import { SimpleEntity } from "../model/entity/simple-entity";
-import { AlertService } from "./framework/alert-service";
-import { GenericEntity } from "../model/entity/generic-entity";
+} from '@angular/common/http';
+import { Type, Injector } from '@angular/core';
+import { SimpleEntity } from '../model/entity/simple-entity';
+import { AlertService } from './framework/alert-service';
+import { GenericEntity } from '../model/entity/generic-entity';
 import { Injectable } from '@angular/core';
 import AppConfig from 'src/app-config';
 
@@ -16,13 +16,14 @@ import AppConfig from 'src/app-config';
 
 
 export abstract class AbstractService<E extends GenericEntity> {
-  seperator = "/";
-  message: string = "";
+  seperator = '/';
+  message = '';
 
 
   protected url = AppConfig.url;
   protected http: HttpClient;
   protected alertService: AlertService;
+  protected formType: Type<any>;
 
   constructor(protected injector: Injector, protected path: string) {
     this.url += path;
@@ -37,8 +38,8 @@ export abstract class AbstractService<E extends GenericEntity> {
       return this.update(entity);
     } else {
       try {
-        let resp = await this.http.post<E>(this.url, entity).toPromise();
-        this.alertService.success("Kaydedildi");
+        const resp = await this.http.post<E>(this.url, entity).toPromise();
+        this.alertService.success('Kaydedildi');
         return resp;
       } catch (e) {
         this.alertService.error(e.error);
@@ -49,8 +50,8 @@ export abstract class AbstractService<E extends GenericEntity> {
 
   private async update(entity: E) {
     try {
-      let resp = await this.http.put<E>(this.url, entity).toPromise();
-      this.alertService.success("Kaydedildi");
+      const resp = await this.http.put<E>(this.url, entity).toPromise();
+      this.alertService.success('Kaydedildi');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -60,10 +61,10 @@ export abstract class AbstractService<E extends GenericEntity> {
 
   async saveAll(entities: E[]) {
     try {
-      let resp = await this.http
-        .post<E>(this.url + "/saveAll", entities)
+      const resp = await this.http
+        .post<E>(this.url + '/saveAll', entities)
         .toPromise();
-      this.alertService.success("Kaydedildi");
+      this.alertService.success('Kaydedildi');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -76,16 +77,16 @@ export abstract class AbstractService<E extends GenericEntity> {
   }
 
   async deleteAll(entities: E[]) {
-    let ids = entities.map(({ id }) => id);
+    const ids = entities.map(({ id }) => id);
     let params = new HttpParams();
     ids.forEach(id => {
-      params = params.append("ids", String(id));
+      params = params.append('ids', String(id));
     });
     try {
-      let resp = await this.http
-        .delete(this.url + this.seperator + "/deleteAllByIds", { params })
+      const resp = await this.http
+        .delete(this.url + this.seperator + '/deleteAllByIds', { params })
         .toPromise();
-      this.alertService.success("İlgili Kayıt silindi");
+      this.alertService.success('İlgili Kayıt silindi');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -96,13 +97,13 @@ export abstract class AbstractService<E extends GenericEntity> {
   async deleteAllByIds(ids: number[]) {
     let params = new HttpParams();
     ids.forEach(id => {
-      params = params.append("ids", String(id));
+      params = params.append('ids', String(id));
     });
     try {
-      let resp = await this.http
-        .delete(this.url + this.seperator + "/deleteAllByIds/", { params })
+      const resp = await this.http
+        .delete(this.url + this.seperator + '/deleteAllByIds/', { params })
         .toPromise();
-      this.alertService.success("İlgili Kayıt silindi");
+      this.alertService.success('İlgili Kayıt silindi');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -112,10 +113,10 @@ export abstract class AbstractService<E extends GenericEntity> {
 
   async deleteById(id: number) {
     try {
-      let resp = await this.http
+      const resp = await this.http
         .delete(this.url + this.seperator + id)
         .toPromise();
-      this.alertService.success("İlgili Kayıt silindi");
+      this.alertService.success('İlgili Kayıt silindi');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -126,7 +127,7 @@ export abstract class AbstractService<E extends GenericEntity> {
   async copy(id: number) {
     try {
       return await this.http
-        .get<E>(this.url + "/copy" + this.seperator + id)
+        .get<E>(this.url + '/copy' + this.seperator + id)
         .toPromise();
     } catch (e) {
       this.alertService.error(e.error);
@@ -136,7 +137,7 @@ export abstract class AbstractService<E extends GenericEntity> {
 
   async new() {
     try {
-      return await this.http.get<E>(this.url + "/new").toPromise();
+      return await this.http.get<E>(this.url + '/new').toPromise();
     } catch (e) {
       this.alertService.error(e.error);
       throw e;

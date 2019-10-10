@@ -18,7 +18,9 @@ export class LayoutComponent implements OnInit {
   screenWidth: number;
 
   isCreateList: boolean=false;
+  isSeeLists: boolean=false;
   isDeleteList: boolean=false;
+
 
   constructor(  private loginService: LoginService,
     private cacheService: CacheService,) { }
@@ -43,6 +45,10 @@ export class LayoutComponent implements OnInit {
                   icon: 'pi pi-fw pi-plus',
                   command: (event) => { this.isCreateList=!this.isCreateList }
               },
+              {label: 'See To-Do Lists',
+              icon: 'pi pi-fw pi-list',
+              command: (event) => { this.isSeeLists=!this.isSeeLists }
+            },
               {label: 'Delete To-Do List',
               icon: 'pi pi-fw pi-minus',
               command: (event) => { this.isDeleteList=!this.isDeleteList }

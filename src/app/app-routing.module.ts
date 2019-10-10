@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: "",
+        path: '',
         component: AppComponent
       },
          /* PAGE NOT FOUND */
