@@ -1,0 +1,15 @@
+<b>  TEST </b>
+<button tabindex="1"(click)="logOut()" type="button" text="Logout From System" class="btn btnMainColor" >
+  <i class="fa fa-pencil-square-o"></i>
+</button>
+
+<p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+
+<span style="font-size: 10px; margin: 10px; text-align: center" class="test copyrightColor"><a
+  style="text-decoration: none !important" class="copyrightColor" target="_blank"
+  href="http://www.furkanalniak.com/">FURKAN ALNIAK</a> </span>
+
+  <button  (click)="isCreateList = !isCreateList">TEST</button>
+
+<app-create-todo-list *ngIf="isCreateList"></app-create-todo-list>
+

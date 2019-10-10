@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="370px" height="175px" viewBox="0 0 370 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>orange_light</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-1.50022215%" y1="95.9463416%" x2="100%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#FFAC7E" offset="0%"></stop>
+            <stop stop-color="#FED500" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="370" height="175" rx="4"></rect>
+        <linearGradient x1="100%" y1="50%" x2="4.56105491%" y2="50%" id="linearGradient-4">
+            <stop stop-color="#F9D423" offset="0%"></stop>
+            <stop stop-color="#FF9476" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="106.407437%" y1="65.27899%" x2="0%" y2="46.7766149%" id="linearGradient-5">
+            <stop stop-color="#F9D423" offset="0%"></stop>
+            <stop stop-color="#F83801" offset="77.6907166%"></stop>
+            <stop stop-color="#F83600" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Dashboard-UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Renk-temaları" transform="translate(-1235.000000, -127.000000)">
+            <g id="card_1" transform="translate(1235.000000, 127.000000)">
+                <g id="card_4">
+                    <g id="Background">
+                        <g id="Group">
+                            <g id="Mask" fill="url(#linearGradient-1)">
+                                <rect id="path-2" x="0" y="0" width="370" height="175" rx="4"></rect>
+                            </g>
+                            <g id="Triangle-Pattern-Clipped">
+                                <mask id="mask-3" fill="white">
+                                    <use xlink:href="#path-2"></use>
+                                </mask>
+                                <g id="path-2"></g>
+                                <g id="Triangle-Pattern" mask="url(#mask-3)">
+                                    <g transform="translate(67.000000, -183.000000)" id="Group">
+                                        <g transform="translate(239.220155, 290.666517) rotate(-11.000000) translate(-239.220155, -290.666517) translate(45.720155, 33.166517)">
+                                            <g id="Oval-6-Copy" transform="translate(148.000000, 348.000000)">
+                                                <g id="path-4-link" fill="#000000">
+                                                    <ellipse id="path-4" cx="9.564086" cy="8.6948" rx="8.97664749" ry="8.55194783"></ellipse>
+                                                </g>
+                                                <g id="path-4-link" fill="#32D296">
+                                                    <ellipse id="path-4" cx="9.564086" cy="8.6948" rx="8.97664749" ry="8.55194783"></ellipse>
+                                                </g>
+                                            </g>
+                                            <circle id="Oval-6" fill="url(#linearGradient-4)" opacity="0.603253322" transform="translate(220.698039, 348.142852) rotate(-25.000000) translate(-220.698039, -348.142852) " cx="220.698039" cy="348.142852" r="125"></circle>
+                                            <circle id="Oval-6-Copy-3" fill="url(#linearGradient-5)" opacity="0.101506699" transform="translate(166.540734, 166.916638) rotate(-25.000000) translate(-166.540734, -166.916638) " cx="166.540734" cy="166.916638" r="125"></circle>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="ic_line_orange" transform="translate(15.000000, 50.000000)" stroke="#D55913">
+                        <path d="M170,-169 L170,171" id="Path-7-Copy" transform="translate(170.000000, 1.000000) rotate(90.000000) translate(-170.000000, -1.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

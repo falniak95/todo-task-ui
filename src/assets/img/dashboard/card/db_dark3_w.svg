@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="370px" height="175px" viewBox="0 0 370 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>card_9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="370" height="175" rx="4"></rect>
+        <ellipse id="path-3" cx="139.564086" cy="341.6948" rx="8.97664749" ry="8.55194783"></ellipse>
+        <filter x="-272.9%" y="-239.7%" width="645.9%" height="673.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.196078431   0 0 0 0 0.823529412   0 0 0 0 0.588235294  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#517FA4" offset="0%"></stop>
+            <stop stop-color="#243949" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="5.09897183%" y1="50%" x2="92.7743217%" y2="59.9441446%" id="linearGradient-6">
+            <stop stop-color="#517FA4" offset="0%"></stop>
+            <stop stop-color="#243949" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Dashboard-UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Renk-temaları" transform="translate(-1235.000000, -983.000000)">
+            <g id="card_9" transform="translate(1235.000000, 983.000000)">
+                <g>
+                    <g id="Background-2">
+                        <g id="Background">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Mask" fill="#142233" xlink:href="#path-1"></use>
+                            <g id="Triangle-Pattern" mask="url(#mask-2)">
+                                <g transform="translate(316.485867, 110.311440) rotate(-371.000000) translate(-316.485867, -110.311440) translate(131.985867, -139.688560)">
+                                    <g id="Oval-6-Copy" fill="none">
+                                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                                        <use fill="#32D296" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                    </g>
+                                    <circle id="Oval-6" fill="url(#linearGradient-5)" fill-rule="evenodd" opacity="0.19906529" transform="translate(202.698039, 333.142852) rotate(-25.000000) translate(-202.698039, -333.142852) " cx="202.698039" cy="333.142852" r="125"></circle>
+                                    <circle id="Oval-6-Copy-3" fill-opacity="0.3" fill="url(#linearGradient-6)" fill-rule="evenodd" opacity="0.341448103" transform="translate(166.573120, 167.027096) rotate(-25.000000) translate(-166.573120, -167.027096) " cx="166.57312" cy="167.027096" r="125"></circle>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M185,-120 L185,220" id="Path-7-Copy" stroke="#3699AD" opacity="0.45" transform="translate(185.000000, 50.000000) rotate(-270.000000) translate(-185.000000, -50.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
