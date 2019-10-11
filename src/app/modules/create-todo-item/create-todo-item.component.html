@@ -35,11 +35,9 @@
 
         <div class="input-group" style="margin: 20px auto; width:500px;">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
+              <span class="input-group-text" id="inputGroup-sizing-sm">Deadline:</span>
             </div>
-
-            <p-calendar [(ngModel)]="deadline" dateFormat="dd.mm.yyyy" name="datePicker" [showIcon]="true"></p-calendar>
-
+            <p-calendar [(ngModel)]="deadline" dateFormat="dd.mm.yyyy" name="datePicker" [showIcon]="true" required></p-calendar>
           </div>
 
 
@@ -61,7 +59,7 @@
 
 
       <div style="text-align: center; margin: 0 auto; width:500px; margin-top: 20px;">
-    <input type="submit" value="Create New Item!" style="margin: 0 auto !important; width:500px !important;" [disabled]="form.invalid"/>
+          <button type="submit" class="btn btn-info" style="margin: 0 auto !important; width:500px !important;" [disabled]="form.invalid">Create New Item!</button>
       </div>
     </form>
     </div>
