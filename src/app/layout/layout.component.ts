@@ -4,11 +4,13 @@ import { CacheService } from "../service/framework/cache.service";
 import Storage from "../model/framework/constants/storage";
 import { User } from "../model/entity/manage/auth/user";
 import {MenuItem} from 'primeng/api';
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
+
 })
 export class LayoutComponent implements OnInit {
 
@@ -19,7 +21,9 @@ export class LayoutComponent implements OnInit {
 
   isCreateList: boolean=false;
   isSeeLists: boolean=false;
-  isDeleteList: boolean=false;
+
+  isCreateItem: boolean=false;
+  isSeeItems: boolean=false;
 
 
   constructor(  private loginService: LoginService,
@@ -42,25 +46,29 @@ export class LayoutComponent implements OnInit {
           icon: 'pi pi-pw pi-file',
           items: [{
                   label: 'Create New To-Do List',
-                  icon: 'pi pi-fw pi-plus',
-                  command: (event) => { this.isCreateList=!this.isCreateList }
+                  icon: 'pi pi-fw pi-calendar-plus',
+                  command: (event) => { this.isCreateList=!this.isCreateList; this.isSeeLists=false;this.isSeeLists=false;this.isSeeItems=false;this.isCreateItem=false;}
               },
-              {label: 'See To-Do Lists',
+              {label: 'To-Do Lists Detail And Settings',
               icon: 'pi pi-fw pi-list',
-              command: (event) => { this.isSeeLists=!this.isSeeLists }
-            },
-              {label: 'Delete To-Do List',
-              icon: 'pi pi-fw pi-minus',
-              command: (event) => { this.isDeleteList=!this.isDeleteList }
+              command: (event) => { this.isSeeLists=!this.isSeeLists;this.isCreateList=false;this.isSeeItems=false;this.isCreateItem=false;}
             }
           ]
       },
       {
-          label: 'Edit',
-          icon: 'pi pi-fw pi-pencil',
+          label: 'To Do Item',
+          icon: 'pi pi-fw pi-list',
           items: [
-              {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-              {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+              {label: 'Create New To-Do Item',
+              icon: 'pi pi-fw pi-plus-circle',
+              command: (event) => { this.isCreateItem=!this.isCreateItem;this.isSeeItems=false;this.isSeeLists=false;this.isCreateList=false;}
+            },
+
+
+              {label: 'To-Do Items Detail And Settings',
+              icon: 'pi pi-fw pi-list',
+              command: (event) => { this.isSeeItems=!this.isSeeItems;this.isCreateItem=false;this.isSeeLists=false;this.isCreateList=false;}
+            }
           ]
       },
       {

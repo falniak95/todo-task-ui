@@ -28,6 +28,11 @@ import {
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { CreateTodoListComponent } from './modules/create-todo-list/create-todo-list.component';
 import { SeeTodoListComponent } from './modules/see-todo-list/see-todo-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateTodoItemComponent } from './modules/create-todo-item/create-todo-item.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -37,9 +42,13 @@ import { SeeTodoListComponent } from './modules/see-todo-list/see-todo-list.comp
     PageNotFoundComponent,
     CreateTodoListComponent,
     SeeTodoListComponent,
-
+    CreateTodoItemComponent,
   ],
   imports: [
+    CalendarModule,
+    InputSwitchModule,
+    DropdownModule,
+    NgbModule,
     PanelMenuModule,
     BrowserModule,
     BrowserAnimationsModule,

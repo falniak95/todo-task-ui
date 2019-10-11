@@ -1,24 +1,80 @@
+<form #form="ngForm">
 
-<p-virtualScroller [value]="todolists" scrollHeight="500px" [itemSize]="150">
-  <p-header>Header Content</p-header>
-  <p-footer>Footer Content</p-footer>
-  <ng-template let-i pTemplate="item" let-i="index">
-
-    <div class="ui-g car-item">
-      <div class="ui-g-12 ui-md-2">
-          <div style="font-size: 24px; text-align: center; padding-top: 48px">{{i}}</div>
-      </div>
-      <div class="ui-g-12 ui-md-8">
-          <div class="ui-g">
-              <div class="ui-g-2 ui-sm-6">Name: </div>
-              <div class="ui-g-10 ui-sm-6">{{i?.name}}</div>
-
-              <div class="ui-g-2 ui-sm-6">Detail: </div>
-              <div class="ui-g-10 ui-sm-6">{{i?.detail}}</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+      <form name="form" #form="ngForm" (ngSubmit)="searchToDoList(form.value)"  >
+      <div class="input-group md-form form-sm form-1 pl-0" style="width: 50% !important;">
+          <div class="input-group-prepend">
+            <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search text-white"
+                aria-hidden="true"></i></span>
+          </div>
+          <input [(ngModel)]="searchName" name="searchName"  class="form-control my-0 py-1" type="text" placeholder="Search By List Name" aria-label="Search">
+          <button type="submit" [disabled]="form.invalid" class="btn btn-secondary">Search</button>
+          <button type="button" class="btn btn-warning" (click)="clearForm()">Clear</button>
+        </div>
 
 
+
+  </form>
+        </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="max-height: 800px; overflow-y: scroll;">
+
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h6 class="border-bottom border-gray pb-2 mb-0">{{listHeader}}</h6>
+      <div class="media text-muted pt-3 item" *ngFor="let todolist of todolists" (click)="clicked(content,todolist)" [ngClass]="selectedToDoList ? (selectedToDoList.id == todolist.id ? 'clickeditem' : '') :''">
+        <div class="bd-placeholder-img mr-2 ml-2 rounded" style="background-color: #669DB3FF; height: 40px; width: 40px; border-radius: 100% !important;">
+            <span style="color: white;font-weight: bold; line-height: 40px; margin-left: 14px;">{{todolist.name.split(' ')[0].slice(0,1) | uppercase}} {{(todolist.name.split(' ')[1] ? todolist.name.split(' ')[1].slice(0,1) : '') | uppercase}}</span>
+        </div>
+
+           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <strong class="d-block text-gray-dark" >{{todolist.name}}</strong>
+              {{todolist.detail}}
+            </p>
+            <div>
+            <button type="button" class="btn btn-danger" (click)="deleteClicked(todolist)" style="margin-right: 5px;" ><i class="fas fa-trash-alt"></i></button>
+            <button type="button" class="btn btn-warning" (click)="editClicked()" style="margin-right: 60px;" ><i class="fas fa-edit"></i></button>
           </div>
       </div>
-  </div>
+
+
+      <small class="d-block text-right mt-3" style="margin-right: 50%;">
+        <a style="text-align: center;">{{todolists.length}} list(s) found.</a>
+      </small>
+    </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">ToDoList: {{selectedToDoList.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p>One fine body&hellip;</p> {{content?.id}} <!-- ng for olacak-->
+      {{selectedToDoList.name}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
   </ng-template>
-</p-virtualScroller>
+
+
+</form>

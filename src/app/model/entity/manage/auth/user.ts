@@ -11,5 +11,6 @@ export class User extends AbstractEntity {
 	lastName: string;
 	status: boolean;
   phoneNo: string;
+  toDoList: SimpleEntity[];
 
 }

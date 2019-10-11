@@ -1,0 +1,74 @@
+
+<div class="card" style="margin-top: 1%;margin-right: 10%;">
+    <div class="card-body">
+
+
+
+    <form name="form" #form="ngForm" (ngSubmit)="createToDoItem(form.value)"  >
+
+      <div style="text-align: center; margin: 0 auto; width:500px;">
+        <b><label>Create a new To Do Item</label></b>
+      </div>
+
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+            </div>
+            <input   [(ngModel)]="name" name="name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+          </div>
+
+          <div class="input-group" style="margin: 0 auto; width:500px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Description</span>
+        </div>
+        <textarea [(ngModel)]="detail" name="detail" class="form-control" aria-label="With textarea" required></textarea>
+      </div>
+
+            <div class="input-group" style="margin: 20px auto; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
+          </div>
+
+          <p-dropdown [options]="todolists" optionLabel="name" [(ngModel)]="todolist" name="listdropdown" placeholder="Select a To-Do List" required></p-dropdown>
+
+        </div>
+
+        <div class="input-group" style="margin: 20px auto; width:500px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
+            </div>
+
+            <p-calendar [(ngModel)]="deadline" dateFormat="dd.mm.yyyy" name="datePicker" [showIcon]="true"></p-calendar>
+
+          </div>
+
+
+
+        <div class="input-group" style="margin: 20px auto; width:500px;">
+          <div class="input-group-prepend">
+            <span>Is Related any Item?</span>
+          </div>
+          <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="isRelatedStatus" name="inputBoolean"></p-inputSwitch>
+        </div>
+
+        <div *ngIf="isRelatedStatus" class="input-group" style="margin: 20px auto; width:500px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
+            </div>
+            <p-dropdown [options]="todoitemList" name="todoItems" optionLabel="name" [(ngModel)]="todoItem" placeholder="Select a To-Do Item"></p-dropdown>
+          </div>
+
+
+
+      <div style="text-align: center; margin: 0 auto; width:500px; margin-top: 20px;">
+    <input type="submit" value="Create New Item!" style="margin: 0 auto !important; width:500px !important;" [disabled]="form.invalid"/>
+      </div>
+    </form>
+    </div>
+
+
+    </div>
+
+
+
+

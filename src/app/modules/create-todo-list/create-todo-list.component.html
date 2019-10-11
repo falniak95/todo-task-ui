@@ -1,5 +1,38 @@
+
+<div class="card" style="margin-top: 1%;margin-right: 10%;">
+<div class="card-body">
+
+
+
 <form name="form" #form="ngForm" (ngSubmit)="createToDoList(form.value)"  >
-  <input [(ngModel)]="name" name="name" type="text" required />
-  <input [(ngModel)]="detail" name="detail" type="text" required/>
-  <input type="submit" text="Test" [disabled]="form.invalid"/>
+
+  <div style="text-align: center; margin: 0 auto; width:500px;">
+    <b><label>Create a new To Do List</label></b>
+  </div>
+
+    <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+        </div>
+        <input   [(ngModel)]="name" name="name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+      </div>
+
+      <div class="input-group" style="margin: 0 auto; width:500px;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Description</span>
+    </div>
+    <textarea [(ngModel)]="detail" name="detail" class="form-control" aria-label="With textarea" required></textarea>
+  </div>
+
+  <div style="text-align: center; margin: 0 auto; width:500px; margin-top: 20px;">
+<input type="submit" value="Create New List!" style="margin: 0 auto !important; width:500px !important;" [disabled]="form.invalid"/>
+  </div>
 </form>
+</div>
+
+
+</div>
+
+
+
+

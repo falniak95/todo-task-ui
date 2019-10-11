@@ -1,13 +1,27 @@
+<form #form="ngForm">
+<div class="container-fluid" style="width: 70%;">
+<div class="row">
+
+<div class="col-md-2">
 <b>  TEST </b>
 <button tabindex="1"(click)="logOut()" type="button" text="Logout From System" class="btn btnMainColor" >
   <i class="fa fa-pencil-square-o"></i>
 </button>
 
-<p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+<p-panelMenu [model]="items" ></p-panelMenu>
 
 <span style="font-size: 10px; margin: 10px; text-align: center" class="test copyrightColor"><a
   style="text-decoration: none !important" class="copyrightColor" target="_blank"
   href="http://www.furkanalniak.com/">FURKAN ALNIAK</a> </span>
+        </div>
+
+  <div class="col-md-10" style="padding-top: 30px">
 
   <app-create-todo-list *ngIf="isCreateList"></app-create-todo-list>
   <app-see-todo-list *ngIf="isSeeLists"></app-see-todo-list>
+  <app-create-todo-item *ngIf="isCreateItem"></app-create-todo-item>
+
+  </div>
+  </div>
+  </div>
+</form>
