@@ -7,7 +7,7 @@ export class ToDoItem extends AbstractEntity {
 	detail: string;
   status: boolean;
   deadline: Date;
-  dependencyItemList: SimpleEntity;
+  dependencyItem: SimpleEntity;
   toDoList: SimpleEntity;
 
 }

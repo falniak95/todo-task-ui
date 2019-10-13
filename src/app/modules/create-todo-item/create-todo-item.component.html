@@ -14,14 +14,14 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
             </div>
-            <input   [(ngModel)]="name" name="name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+            <input maxlength=255   [(ngModel)]="name" name="name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
           </div>
 
           <div class="input-group" style="margin: 0 auto; width:500px;">
         <div class="input-group-prepend">
           <span class="input-group-text">Description</span>
         </div>
-        <textarea [(ngModel)]="detail" name="detail" class="form-control" aria-label="With textarea" required></textarea>
+        <textarea maxlength=255 [(ngModel)]="detail" name="detail" class="form-control" aria-label="With textarea" required></textarea>
       </div>
 
             <div class="input-group" style="margin: 20px auto; width:500px;">
@@ -29,7 +29,7 @@
             <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
           </div>
 
-          <p-dropdown [options]="todolists" optionLabel="name" [(ngModel)]="todolist" name="listdropdown" placeholder="Select a To-Do List" required></p-dropdown>
+          <p-dropdown [options]="todolists" optionLabel="name" (onChange)="onChangeToDoList($event)" [(ngModel)]="pickedToDoList" name="listdropdown" placeholder="Select a To-Do List" required></p-dropdown>
 
         </div>
 
@@ -37,12 +37,12 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-sm">Deadline:</span>
             </div>
-            <p-calendar [(ngModel)]="deadline" dateFormat="dd.mm.yyyy" name="datePicker" [showIcon]="true" required></p-calendar>
+            <p-calendar [(ngModel)]="deadline" [minDate]="minDateValue" (onSelect)="onDateChange($event)" name="datePicker" [showIcon]="true" required></p-calendar>
           </div>
 
 
 
-        <div class="input-group" style="margin: 20px auto; width:500px;">
+        <div *ngIf="isPickedList" class="input-group" style="margin: 20px auto; width:500px;">
           <div class="input-group-prepend">
             <span>Is Related any Item?</span>
           </div>
@@ -51,9 +51,9 @@
 
         <div *ngIf="isRelatedStatus" class="input-group" style="margin: 20px auto; width:500px;">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
+              <span class="input-group-text" id="inputGroup-sizing-sm">Item List:</span>
             </div>
-            <p-dropdown [options]="todoitemList" name="todoItems" optionLabel="name" [(ngModel)]="todoItem" placeholder="Select a To-Do Item"></p-dropdown>
+            <p-dropdown [options]="todoitemList" optionLabel="name" (onChange)="onChangeDependency($event)" [(ngModel)]="pickedDependency" name="todoItems"  placeholder="Select a To-Do Item from {{this.pickedToDoList.name}}"></p-dropdown>
           </div>
 
 

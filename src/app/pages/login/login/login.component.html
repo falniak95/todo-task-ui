@@ -26,34 +26,100 @@
 
         <fieldset>
           <div class="fieldContainer">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Kullanıcı Adı / E-posta"
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
               ngModel autocomplete="off" (click)="clean()">
           </div>
           <div class="fieldContainer last">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Şifre" ngModel (click)="clean()">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" ngModel (click)="clean()">
           </div>
         </fieldset>
 
         <div style="text-align:center; margin-top:10px">
-            <input class="form-radio" type="checkbox" name="rememberMe" id="rememberMe" ngModel><label for="rememberMe">Beni Hatırla</label>
+            <input class="form-radio" type="checkbox" name="rememberMe" id="rememberMe" ngModel><label for="rememberMe">Remember Me</label>
         </div>
 
         <div class="errorContainer alert alert-danger form-group" *ngIf="responseErrorMessage == 'usernamePasswordFail'">
-            <span class="errorText">Kullanıcı adı veya şifre hatalı, lütfen tekrar deneyiniz !</span>
+            <span class="errorText">Username or password is not valid</span>!
         </div>
 
         <div class="errorContainer alert alert-danger form-group" *ngIf="responseErrorMessage == 'object'">
-            <span class="errorText">Sunucuya ulaşılamadı. Bir süre bekleyip tekrar deneyiniz !</span>
+            <span class="errorText">Cannot reach the server. Please try after wait!</span>
         </div>
 
         <div class="formActions">
           <div class="formButton">
-            <input type="submit" name="commit" value="Giriş Yap" data-disable-with="Giriş Yap"/>
+            <input type="submit" name="commit" value="Log In" data-disable-with="Giriş Yap"/>
           </div>
+
         </div>
 
       </form>
-
+      <div style="margin-top:50px" class="registerButton">
+          <button type="button" class="btn btn-light" style="margin: 0 auto !important; margin-top:20px; width:350px !important;" type="submit" (click)="openLg(registercontent)" name="commit" >Register</button>
+      </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #registercontent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Register</h4>
+
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+<form name="form" #registerForm="ngForm" (ngSubmit)="createUser(form.value)"  >
+
+
+    <div style="text-align: center; margin: 0 auto; width:500px;">
+        <b><label>New User</label></b>
+      </div>
+
+      <div class="input-group input-group-sm mb-3" style="margin: 0 auto;margin-right:60px; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+          </div>
+          <input   [(ngModel)]="uName"  name="username"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto;margin-right:60px; width:500px;">
+          <div class="input-group-prepend">
+          </div>
+          <input type="password" placeholder="Password" [(ngModel)]="pass"  name="password"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+        </div>
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto;margin-right:60px; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+          </div>
+          <input   [(ngModel)]="fName"  name="firstname"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+        </div>
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto;margin-right:60px; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Lastname</span>
+          </div>
+          <input   [(ngModel)]="lName"  name="lastname"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+        </div>
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto;margin-right:60px; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">PhoneNo</span>
+          </div>
+          <input   [(ngModel)]="pNo"  name="phone"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" >
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto;margin-right:60px; width:500px;">
+          <div class="input-group-prepend">
+            <button type="submit" class="btn btn-info" style="margin: 0 auto !important; width:500px !important;" [disabled]="form.invalid"> Create New User!</button>
+            </div>
+        </div>
+
+
+  </form>
+</div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>

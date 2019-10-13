@@ -33,6 +33,10 @@ import { CreateTodoItemComponent } from './modules/create-todo-item/create-todo-
 import {DropdownModule} from 'primeng/dropdown';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {CalendarModule} from 'primeng/calendar';
+import { SeeTodoItemComponent } from './modules/see-todo-item/see-todo-item.component';
+import { DatePipe } from '@angular/common'
+import {ListboxModule} from 'primeng/listbox';
+import { UserSettingsComponent } from './modules/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +47,10 @@ import {CalendarModule} from 'primeng/calendar';
     CreateTodoListComponent,
     SeeTodoListComponent,
     CreateTodoItemComponent,
-  ],
+    SeeTodoItemComponent,
+    UserSettingsComponent,  ],
   imports: [
+    ListboxModule,
     CalendarModule,
     InputSwitchModule,
     DropdownModule,
@@ -75,14 +81,15 @@ import {CalendarModule} from 'primeng/calendar';
     },
     {
       provide: LOCALE_ID,
-      useValue: 'tr-TR'
+      useValue: 'en-EN'
     },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
     MessageService,
-    ConfirmationService
+    ConfirmationService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
@@ -91,7 +98,7 @@ export class AppModule {
     this.appStartUp();
   }
   appStartUp() {
-    this.overrideJSONtoJson();
+    //this.overrideJSONtoJson();
   }
   overrideJSONtoJson() {
     Date.prototype.toJSON = function() {

@@ -1,0 +1,47 @@
+<form name="form" #form="ngForm" (ngSubmit)="saveUser(form.value)"  >
+
+    <div style="text-align: center; margin: 0 auto; width:500px;">
+      <b><label>User Detail</label></b>
+    </div>
+
+    <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+        </div>
+        <input   [(ngModel)]="user.username"  name="username"  disabled class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+      <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+          </div>
+          <input   [(ngModel)]="user.password"  name="pass" type="text" class="form-control" aria-label="Small" placeholder="Set a Password for change" type="password" aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+
+      <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+          </div>
+          <input [(ngModel)]="user.firstName" name="name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Lastname</span>
+            </div>
+            <input   [(ngModel)]="user.lastName" name="lastname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+          </div>
+
+          <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Phone Number</span>
+              </div>
+              <input   [(ngModel)]="user.phoneNo" name="phone" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+
+    <div style="text-align: center; margin: 0 auto; width:500px; margin-top: 20px;">
+        <button type="submit" class="btn btn-info" style="margin: 0 auto !important; width:500px !important;" [disabled]="form.pristine"><i class="far fa-save"></i> Save Changes</button>
+    </div>
+  </form>

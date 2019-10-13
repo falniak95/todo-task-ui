@@ -24,7 +24,7 @@ export class LayoutComponent implements OnInit {
 
   isCreateItem: boolean=false;
   isSeeItems: boolean=false;
-
+  isUserSettings: boolean=false;
 
   constructor(  private loginService: LoginService,
     private cacheService: CacheService,) { }
@@ -47,11 +47,11 @@ export class LayoutComponent implements OnInit {
           items: [{
                   label: 'Create New To-Do List',
                   icon: 'pi pi-fw pi-calendar-plus',
-                  command: (event) => { this.isCreateList=!this.isCreateList; this.isSeeLists=false;this.isSeeLists=false;this.isSeeItems=false;this.isCreateItem=false;}
+                  command: (event) => { this.isCreateList=!this.isCreateList; this.isSeeLists=false;this.isSeeLists=false;this.isSeeItems=false;this.isCreateItem=false;this.isUserSettings=false;}
               },
               {label: 'To-Do Lists Detail And Settings',
               icon: 'pi pi-fw pi-list',
-              command: (event) => { this.isSeeLists=!this.isSeeLists;this.isCreateList=false;this.isSeeItems=false;this.isCreateItem=false;}
+              command: (event) => { this.isSeeLists=!this.isSeeLists;this.isCreateList=false;this.isSeeItems=false;this.isCreateItem=false;this.isUserSettings=false;}
             }
           ]
       },
@@ -61,61 +61,23 @@ export class LayoutComponent implements OnInit {
           items: [
               {label: 'Create New To-Do Item',
               icon: 'pi pi-fw pi-plus-circle',
-              command: (event) => { this.isCreateItem=!this.isCreateItem;this.isSeeItems=false;this.isSeeLists=false;this.isCreateList=false;}
+              command: (event) => { this.isCreateItem=!this.isCreateItem;this.isSeeItems=false;this.isSeeLists=false;this.isCreateList=false;this.isUserSettings=false;}
             },
 
 
               {label: 'To-Do Items Detail And Settings',
               icon: 'pi pi-fw pi-list',
-              command: (event) => { this.isSeeItems=!this.isSeeItems;this.isCreateItem=false;this.isSeeLists=false;this.isCreateList=false;}
+              command: (event) => { this.isSeeItems=!this.isSeeItems;this.isCreateItem=false;this.isSeeLists=false;this.isCreateList=false;this.isUserSettings=false;}
             }
           ]
-      },
-      {
-          label: 'Help',
-          icon: 'pi pi-fw pi-question',
-          items: [
-              {
-                  label: 'Contents',
-                  icon: 'pi pi-pi pi-bars'
-              },
-              {
-                  label: 'Search',
-                  icon: 'pi pi-pi pi-search',
-                  items: [
-                      {
-                          label: 'Text',
-                          items: [
-                              {
-                                  label: 'Workspace'
-                              }
-                          ]
-                      },
-                      {
-                          label: 'User',
-                          icon: 'pi pi-fw pi-file',
-                      }
-              ]}
-          ]
-      },
-      {
-          label: 'Actions',
+      },  {
+          label: 'Settings',
           icon: 'pi pi-fw pi-cog',
           items: [
               {
-                  label: 'Edit',
-                  icon: 'pi pi-fw pi-pencil',
-                  items: [
-                      {label: 'Save', icon: 'pi pi-fw pi-save'},
-                      {label: 'Update', icon: 'pi pi-fw pi-save'},
-                  ]
-              },
-              {
-                  label: 'Other',
-                  icon: 'pi pi-fw pi-tags',
-                  items: [
-                      {label: 'Delete', icon: 'pi pi-fw pi-minus'}
-                  ]
+                  label: 'User Settings',
+                  icon: 'pi pi-fw pi-user',
+                  command: (event) => { this.isUserSettings=!this.isUserSettings;this.isCreateItem=false;this.isSeeLists=false;this.isCreateList=false;this.isSeeItems=false;}
               }
           ]
       }

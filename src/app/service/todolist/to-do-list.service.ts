@@ -13,6 +13,20 @@ export class ToDoListService  extends AbstractService<ToDoList> {
 
   }
 
+  async findById(id: number) {
+    let params = new HttpParams();
+    params = params.append('id', String(id));
+    try {
+      return await this.http
+        .get<ToDoList>(this.url + '/findById', { params })
+        .toPromise();
+    } catch (e) {
+      this.alertService.error(e.error);
+      throw e;
+    }
+  }
+
+
   async searchByName(name: string) {
     let params = new HttpParams();
     params = params.append('listName', String(name));
@@ -25,19 +39,5 @@ export class ToDoListService  extends AbstractService<ToDoList> {
       throw e;
     }
   }
-  async searchForAutoComplete(name: string) {
-    let params = new HttpParams();
-    params = params.append('listName', String(name));
-    try {
-      return await this.http
-        .get<ToDoList[]>(this.url + '/search', { params })
-        .toPromise();
-    } catch (e) {
-      this.alertService.error(e.error);
-      throw e;
-    }
-  }
-
-
 
 }

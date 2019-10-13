@@ -32,6 +32,8 @@ export class CreateTodoListComponent implements OnInit {
     _todolist.name = entity.name;
     _todolist.detail = entity.detail;
     _todolist = await this.toDoListService.save(_todolist);
+    this.name='';
+    this.detail='';
   }
 
 }

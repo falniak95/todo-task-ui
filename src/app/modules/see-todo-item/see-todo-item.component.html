@@ -1,0 +1,227 @@
+<form #form="ngForm">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+          <form name="form" #form="ngForm" (ngSubmit)="searchToDoItem(form.value)"  >
+          <div class="input-group md-form form-sm form-1 pl-0" style="width: 50% !important;">
+              <div class="input-group-prepend">
+                <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search text-white"
+                    aria-hidden="true"></i></span>
+              </div>
+              <input [(ngModel)]="searchName" name="searchName"  type="text" placeholder="Search By Item Name" aria-label="Search">
+
+              <p-dropdown [options]="status" optionLabel="name"  (onChange)="onChangeStatusFilter($event)" [(ngModel)]="selectedStatus" name="statusfilter"  placeholder="Select a Status for filtering"></p-dropdown>
+
+              <p-dropdown [options]="deadlineStatus" optionLabel="name" (onChange)="onChangeDeadlineStatus($event)" [(ngModel)]="selectedDeadlineStatus" name="deadlinestatusfilter"  placeholder="Select a Deadline Status for filtering"></p-dropdown>
+
+            </div>
+
+
+            <button type="submit" [disabled]="form.invalid" class="btn btn-secondary">Search</button>
+            <button type="button" class="btn btn-warning" (click)="clearForm()">Clear</button>
+
+      </form>
+            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="max-height: 800px; overflow-y: scroll;">
+
+      <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-0">To Do Item(s)</h6>
+
+          <p-dropdown [options]="sortList" optionLabel="name" (onChange)="onSortTypeChanged($event)" [(ngModel)]="selectedDeadlineStatus" name="sortdropdown"  placeholder="Select a Sort Type"></p-dropdown>
+
+          <div class="media text-muted pt-3 item" *ngFor="let todoItem of todoItemList" (click)="clicked(content,todoItem)" [ngClass]="selectedToDoItem ? (selectedToDoItem.id == todoItemList.id ? 'clickeditem' : '') :''">
+            <div class="bd-placeholder-img mr-2 ml-2 rounded" style="background-color: #669DB3FF; height: 40px; width: 40px; border-radius: 100% !important;">
+                <span style="color: white;font-weight: bold; line-height: 40px; margin-left: 14px;">{{todoItem.name.split(' ')[0].slice(0,1) | uppercase}}{{(todoItem.name.split(' ')[1] ? todoItem.name.split(' ')[1].slice(0,1) : '') | uppercase}}</span>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4" >
+               <p class="">
+                  <strong class="d-block text-gray-dark" >{{todoItem.name}}</strong>
+                </p>
+                <p class="">
+                  <strong class="small" >Deadline: {{todoItem.deadline}}</strong>
+                </p>
+                    </div>
+                    <div class="col-md-2" >
+                        <strong class="" style="margin: 0;position:relative ; top: 50%;left: 50%;transform: translate(-50%, -50%);" >Status:</strong>
+                      </div>
+                      <div class="col-md-2" >
+                      <div *ngIf="todoItem.status" class="bd-placeholder-img mr-2 ml-2 rounded" style="position:relative ; top: 65%;transform: translate(-50%, -50%);background-color: #C0D890; height: 25px; width:25px; border-radius: 100% !important;"></div>
+                      <div *ngIf="!todoItem.status" class="bd-placeholder-img mr-2 ml-2 rounded" style="position:relative ; top: 65%;transform: translate(-50%, -50%);background-color: #FF404B; height: 25px; width: 25px; border-radius: 100% !important;"></div>
+                    </div>
+
+
+
+                      <div class="col-md-4 " >
+
+                  <button type="button" class="btn btn-success" (click)="completedClicked(todoItem)" style="margin-left: 60px;" matTooltip="Set As Completed"><i class="far fa-check-circle"></i></button>
+                  <button type="button" class="btn btn-danger" (click)="deleteClicked(todoItem)" style="margin-left: 6px;" ><i class="fas fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-warning" (click)="editClicked(editcontent,todoItem)" style="margin-left: 6px;" ><i class="fas fa-edit"></i></button>
+                </div>
+
+                    </div>
+
+                      <div class="row">
+                          <div class="col-md-12 media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+
+                  {{todoItem.detail}}
+
+                </div>
+              </div>
+            </div>
+
+  </div>
+
+
+          <small class="d-block text-right mt-3" style="margin-right: 50%;">
+            <a style="text-align: center;">{{todoItemList.length}} ToDo Item(s) found.</a>
+          </small>
+        </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">ToDo Item: {{selectedToDoItem.name}}</h4>
+
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                       <p><b>To-Do Item Name:</b> {{selectedToDoItem.name}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <b>To-Do Item Status:</b>
+
+                     </div>
+                    <div class="col-md-3">
+                        <div *ngIf="selectedToDoItem.status" class="bd-placeholder-img mr-2 ml-2 rounded" style="margin-left:40%; position:relative ;top:30%;transform: translate(0%, -50%);background-color: #C0D890; height: 25px; width:25px; border-radius: 100% !important;"></div>
+                        <div *ngIf="!selectedToDoItem.status" class="bd-placeholder-img mr-2 ml-2 rounded" style="margin-left:40%; position:relative ;top:30%;transform: translate(0%, -50%);background-color: #FF404B; height: 25px; width: 25px; border-radius: 100% !important;"></div>
+                     </div>
+
+             </div>
+             <div class="row">
+                <div class="col-md-6">
+                   <p><b>To-Do Item Description:</b> {{selectedToDoItem.detail}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>To-Do Item Related List Name:</b> {{selectedToDoItem.toDoList.name}}</p>
+                 </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+
+                      <p><b>To-Do Item Deadline:</b> {{selectedToDoItem.deadline}}</p>
+                   </div>
+                  <div  *ngIf="selectedToDoItem.dependencyItem!=null"  class="col-md-6">
+
+                     <p><b>To-Do Item Related Item Name:</b> {{selectedToDoItem.dependencyItem.name}}</p>
+                  </div>
+              </div>
+        </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+
+
+
+    <ng-template #editcontent let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">ToDo Item: {{selectedToDoItem.name}}</h4>
+
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+            <form #editform="ngForm" (ngSubmit)="editSaved(form.value)" >
+
+            <div class="input-group input-group-sm mb-3" style="margin: 0 auto; width:500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                </div>
+                <input maxlength=255  [(ngModel)]="selectedToDoItem.name" name="name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+              </div>
+
+              <div class="input-group" style="margin: 0 auto; width:500px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Description</span>
+            </div>
+            <textarea maxlength=255 [(ngModel)]="selectedToDoItem.detail" name="detail" class="form-control" aria-label="With textarea" required></textarea>
+          </div>
+
+                <div class="input-group" style="margin: 20px auto; width:500px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Related List:</span>
+              </div>
+
+              <p-dropdown [options]="todolists" optionLabel="name" (onChange)="onChangeToDoList($event)"  [(ngModel)]="pickedToDoList" name="listdropdownedit" placeholder="Select a To-Do List For Change" required></p-dropdown>
+
+            </div>
+
+            <div class="input-group" style="margin: 20px auto; width:500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Deadline:</span>
+                </div>
+                <p-calendar [(ngModel)]="selectedDate" placeholder="Select a date for change" [minDate]="minDateValue" (onSelect)="onDateChange($event)" name="datePickeredit" [showIcon]="true" required></p-calendar>
+                 Deadline is: {{selectedToDoItem.deadline}}
+
+              </div>
+
+
+
+            <div class="input-group" style="margin: 20px auto; width:500px;">
+              <div class="input-group-prepend">
+                <span>Is Related any Item?</span>
+              </div>
+              <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="isRelatedStatus" name="inputBoolean"></p-inputSwitch>
+            </div>
+
+            <div *ngIf="isRelatedStatus" class="input-group" style="margin: 20px auto; width:500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Item List:</span>
+                </div>
+                <p-dropdown [options]="relatedToDoItemList" optionLabel="name" (onChange)="onChangeDependency($event)" [(ngModel)]="selectedToDoItem.dependencyItem" name="todoItems"  placeholder="Select a To-Do Item from {{this.selectedToDoItem.toDoList.name}}"></p-dropdown>
+              </div>
+
+
+
+          <div style="text-align: center; margin: 0 auto; width:500px; margin-top: 20px;">
+              <button type="submit" class="btn btn-info" style="margin: 0 auto !important; width:500px !important;"><i class="far fa-save"></i>Save Changes</button>
+          </div>
+
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+
+
+    </form>

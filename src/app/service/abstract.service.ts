@@ -39,7 +39,7 @@ export abstract class AbstractService<E extends GenericEntity> {
     } else {
       try {
         const resp = await this.http.post<E>(this.url, entity).toPromise();
-        this.alertService.success('Kaydedildi');
+        this.alertService.success('Save succesfull');
         return resp;
       } catch (e) {
         this.alertService.error(e.error);
@@ -51,7 +51,7 @@ export abstract class AbstractService<E extends GenericEntity> {
   private async update(entity: E) {
     try {
       const resp = await this.http.put<E>(this.url, entity).toPromise();
-      this.alertService.success('Kaydedildi');
+      this.alertService.success('Save succesfull');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -64,7 +64,7 @@ export abstract class AbstractService<E extends GenericEntity> {
       const resp = await this.http
         .post<E>(this.url + '/saveAll', entities)
         .toPromise();
-      this.alertService.success('Kaydedildi');
+      this.alertService.success('Save succesfull');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -86,7 +86,7 @@ export abstract class AbstractService<E extends GenericEntity> {
       const resp = await this.http
         .delete(this.url + this.seperator + '/deleteAllByIds', { params })
         .toPromise();
-      this.alertService.success('İlgili Kayıt silindi');
+      this.alertService.success('Deleted succesfully');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -103,7 +103,7 @@ export abstract class AbstractService<E extends GenericEntity> {
       const resp = await this.http
         .delete(this.url + this.seperator + '/deleteAllByIds/', { params })
         .toPromise();
-      this.alertService.success('İlgili Kayıt silindi');
+      this.alertService.success('Deleted succesfully');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
@@ -116,7 +116,7 @@ export abstract class AbstractService<E extends GenericEntity> {
       const resp = await this.http
         .delete(this.url + this.seperator + id)
         .toPromise();
-      this.alertService.success('İlgili Kayıt silindi');
+      this.alertService.success('Deleted succesfully');
       return resp;
     } catch (e) {
       this.alertService.error(e.error);
