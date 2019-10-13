@@ -46,6 +46,7 @@ export class SeeTodoListComponent implements OnInit {
   pickedToDoList: ToDoList;
 
 
+
   constructor(protected todoListService: ToDoListService,
               protected todoItemService: TodoItemService,
               private alertService: AlertService,
@@ -63,7 +64,7 @@ export class SeeTodoListComponent implements OnInit {
   }
 
   openLg(content, entity: any) {
-
+    event.stopPropagation();
     this.selectedToDoList = entity;
     this.fillItemList();
     const modal: NgbModalRef = this.modalService.open(content, { size: 'lg' });
@@ -109,7 +110,7 @@ export class SeeTodoListComponent implements OnInit {
     }
 }
 
-  editClicked() {
+  editClicked(list: ToDoList) {
 
 
     event.stopPropagation();
@@ -140,6 +141,17 @@ export class SeeTodoListComponent implements OnInit {
   }else{
     this.alertService.warn('Item already set as completed.');
   }
+
+
+  }
+  async editListSave(entity: any){
+    let list: ToDoList = await this.todoListService.findById(this.selectedToDoList.id);
+    if(this.selectedToDoList.name!=null)
+    list.name=this.selectedToDoList.name;
+    if(this.selectedToDoList.detail!=null)
+    list.detail=this.selectedToDoList.detail;
+
+    this.selectedToDoList = await this.todoListService.save(list);
 
 
   }
